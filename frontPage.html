@@ -57,26 +57,55 @@
         </div>
 
         <!-- Modal -->
-    <div class="modal fade" id="planMealModal" tabindex="-1" role="dialog" aria-labelledby="planMealModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="planMealModalLabel">Plan Meal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Your modal content goes here -->
-                    <p>Modal content goes here...</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" >Save Changes</button>
+        <div class="modal fade" id="planMealModal" tabindex="-1" role="dialog" aria-labelledby="planMealModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="planMealModalLabel">Plan Meal</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Your modal content goes here -->
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="mealType">Meal Type</label>
+                                    <select class="form-control" id="mealType">
+                                        <option selected>Choose...</option>
+                                        <option>Breakfast</option>
+                                        <option>Lunch</option>
+                                        <option>Dinner</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="foodSelection">Food Selection</label>
+                                    <select class="form-control" id="foodSelection">
+                                        <option selected>Choose...</option>
+                                        <option>Eggs</option>
+                                        <option>Salad</option>
+                                        <option>Pasta</option>
+                                        <option>Chicken</option>
+                                        <option>Steak</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mealDateTime">Meal Date & Time</label>
+                                <input type="datetime-local" class="form-control" id="mealDateTime">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save Changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        
+        
 
         <div class="mt-5">
             <table class="table">
@@ -104,7 +133,7 @@
                         <td>Fufu</td>
                         <td>8:00 AM</td>
                         <td>
-                            <button type="button" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</button>
                             <button type="button" class="btn btn-success">Schedule Alert</button>
                             <button type="button" class="btn btn-danger">Delete</button>
                         </td>
@@ -114,6 +143,69 @@
             </table>
         </div>
     </div>
+
+
+    <!-- Edit Meal Modal Question -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="editModalLabel">Edit Meal</h5>
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to edit the meal?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" onclick="openNewEditModal()">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- Second Edit Meal Modal -->
+      <div class="modal fade" id="newEditModal" tabindex="-1" role="dialog" aria-labelledby="newEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title" id="newEditModalLabel">Edit Meal</h5>
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="meal">Meal:</label>
+                <input type="text" class="form-control" id="meal" value="Breakfast" >
+              </div>
+              <div class="form-group">
+                <label for="food">Food:</label>
+                <input type="text" class="form-control" id="food" value="Eggs, Bacon, Toast" >
+              </div>
+              <div class="form-group">
+                <label for="datetime">Time and Date:</label>
+                <input type="datetime-local" class="form-control" id="datetime" value="2022-12-31T23:59" >
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  
+  <script>
+  function openNewEditModal() {
+    $('#editModal').modal('hide'); // Close the current modal
+    $('#newEditModal').modal('show'); // Open the new modal
+  }
+  </script>
 
     <!-- Bootstrap JS (optional, if you need Bootstrap JavaScript functionality) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
